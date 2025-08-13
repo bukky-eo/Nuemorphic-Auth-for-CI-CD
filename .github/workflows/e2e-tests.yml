@@ -1,4 +1,4 @@
-name: E2E Tests
+nname: Cypress Tests
 
 on:
   push:
@@ -7,21 +7,18 @@ on:
     branches: [ main ]
 
 jobs:
-  test:
+  cypress-run:
     runs-on: ubuntu-latest
 
     steps:
-      # 1. Checkout repo
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      # 2. Setup Node.js
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
           node-version: 20
 
-      # 3. Cache Node.js dependencies
       - name: Cache Node.js modules
         uses: actions/cache@v4
         with:
@@ -30,27 +27,15 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-node-
 
-      # 4. Cache Playwright browsers
-      - name: Cache Playwright browsers
-        uses: actions/cache@v4
-        with:
-          path: ~/.cache/ms-playwright
-          key: ${{ runner.os }}-playwright
-
-      # 5. Install dependencies
       - name: Install dependencies
         run: npm ci
 
-      # 6. Install Playwright browsers (will skip if cached)
-      - name: Install Playwright browsers
-        run: npx playwright install --with-deps
-
-      # 7. Start the dev server in the background
       - name: Start application
         run: |
           npm start &
           npx wait-on http://localhost:3000
 
-      # 8. Run Playwright tests
-      - name: Run Playwright tests
-        run: npx playwright test
+      - name: Run Cypress tests
+        uses: cypress-io/github-action@v6
+        with:
+          browser: chrome
