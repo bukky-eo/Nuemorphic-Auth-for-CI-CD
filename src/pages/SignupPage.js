@@ -228,7 +228,7 @@ const SignupPage = () => {
             <label htmlFor="terms">I agree to the Terms and Conditions</label>
           </CheckboxWrapper>
           {errors.terms && <ErrorText>{errors.terms}</ErrorText>}
-
+{firebaseError && <ErrorText>{firebaseError}</ErrorText>}
           <Button type="submit">Create Account</Button>
         </CenteredForm>
 
