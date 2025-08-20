@@ -1,9 +1,8 @@
-// tests/signup.spec.js
 import { test, expect } from '@playwright/test';
 
 test.describe('Signup Page', () => {
   test.beforeEach(async ({ page }) => {
-    await page.goto('http://localhost:3000/signup'); // Adjust if your dev server is different
+    await page.goto('http://localhost:3000/signup'); 
   });
 
   test('should show validation errors for empty fields', async ({ page }) => {
