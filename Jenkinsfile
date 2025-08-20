@@ -27,10 +27,10 @@ pipeline {
         }
     }
     
-    // post {
-    //     always {
-    //         junit '**/test-results/*.xml'
-    //         archiveArtifacts artifacts: 'cypress/videos/**/*, playwright-report/**/*', allowEmptyArchive: true
-    //     }
-    // }
+    post {
+        always {
+            // junit '**/test-results/*.xml'
+            archiveArtifacts artifacts: 'cypress/videos/**/*, playwright-report/**/*', allowEmptyArchive: true
+        }
+    }
 }
