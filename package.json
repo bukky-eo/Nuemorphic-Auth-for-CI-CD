@@ -21,6 +21,7 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "test:cypress": "start-server-and-test start http://localhost:3000 'cypress run'",
+    "test:playwright": "start-server-and-test start http://localhost:3000 'playwright test'",
     "eject": "react-scripts eject"
   },
   "eslintConfig": {
